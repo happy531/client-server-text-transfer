@@ -13,14 +13,13 @@
 #define PORT htons(3001)
 #define BUFF_SIZE 1024
 
-void recv_message(int socket, char* client_address) {
+void recv_message(int socket, unsigned int port, char* client_address) {
     char buff[BUFF_SIZE];
     memset(buff, 0, BUFF_SIZE);
     while(recv(socket, buff, BUFF_SIZE, 0)){
-    printf("%s: %s\n", client_address, buff);
+    printf("%s(%u): %s\n", client_address, port,  buff);
     memset(buff, 0, BUFF_SIZE);
     }
-    // close(socket);
 }
 
 int main(void) {
@@ -57,8 +56,7 @@ int main(void) {
         if (fork() == 0)
         {
             // child process
-            // printf("Child: starting process\n");
-            recv_message(sockfd_client, inet_ntoa(adr.sin_addr));
+            recv_message(sockfd_client, ntohs(adr.sin_port), inet_ntoa(adr.sin_addr));
             printf("Child: %s:%u disconnected.\n", inet_ntoa(adr.sin_addr), ntohs(adr.sin_port));
             exit(0);
         }

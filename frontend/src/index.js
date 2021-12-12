@@ -17,17 +17,11 @@ ipcMain.on("connect", (event, data) => {
   });
 
   ipcMain.on("message", (event, data) => {
-    // console.log(data.message);
     client.write(data.message);
-    // fs.readFile("file.txt", function (err, buf) {
-    //   client.emit("file", { buffer: buf });
-    // });
-
-    // client.destroy();
   });
 
   ipcMain.on("disconnect", (event, data) => {
-    client.write(true);
+    client.destroy();
   });
 });
 

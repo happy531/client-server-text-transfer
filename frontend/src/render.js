@@ -3,9 +3,9 @@ const { ipcRenderer } = require("electron");
 const ipInput = document.getElementById("ip");
 const portInput = document.getElementById("port");
 const messInput = document.getElementById("mess");
-ipInput.value = "192.168.0.32";
+ipInput.value = "192.168.0.34";
 portInput.value = 3001;
-messInput.value = "hello from client";
+messInput.value = "hello";
 
 function handleConnect() {
   ipcRenderer.send("connect", {
@@ -27,3 +27,9 @@ function sendMessage() {
 }
 const sendMessBtn = document.getElementById("send-mess");
 sendMessBtn.onclick = sendMessage;
+
+function handleDisconnect() {
+  ipcRenderer.send("disconnect");
+}
+const disconnectBtn = document.getElementById("disconn-btn");
+disconnectBtn.onclick = handleDisconnect;
