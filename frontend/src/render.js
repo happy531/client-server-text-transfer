@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 const ipInput = document.getElementById("ip");
 const portInput = document.getElementById("port");
 const messInput = document.getElementById("mess");
-ipInput.value = "192.168.0.31";
+ipInput.value = "192.168.0.32";
 portInput.value = 3001;
 messInput.value = "hello from client";
 
